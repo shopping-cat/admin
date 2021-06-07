@@ -220,3 +220,48 @@ interface UpdateRequestItemsVars {
 
 }
 export const useUpdateRequestItems = createQueryHook<UpdateRequestItemsData, UpdateRequestItemsVars>(UPDATE_REQUEST_ITEMS)
+
+
+// 
+export const APPROVE_UPDATE_REQUEST_ITEM = gql`
+  mutation($id:Int!) {
+    approveUpdateRequestItem(id:$id) {
+        id
+        state
+        updateItem {
+            id
+        }
+    }
+  }
+`
+
+interface ApproveUpdateRequestItemData { }
+interface ApproveUpdateRequestItemVars { }
+export const useApproveUpdateRequestItem = createMutationHook<ApproveUpdateRequestItemData, ApproveUpdateRequestItemVars>(APPROVE_UPDATE_REQUEST_ITEM)
+
+
+// 
+export const REJECT_UPDATE_REQUEST_ITEM = gql`
+  mutation($id:Int!) {
+    rejectUpdateRequestItem(id:$id) {
+        id
+        state
+        updateItem {
+            id
+        }
+    }
+  }
+`
+
+interface RejectUpdateRequestItemData {
+    rejectUpdateRequestItem: {
+        id: number
+        state: ItemState
+        updateItem: {
+            id: number
+        } | null
+
+    }
+}
+interface RejectUpdateRequestItemVars { }
+export const useRejectUpdateRequestItem = createMutationHook<RejectUpdateRequestItemData, RejectUpdateRequestItemVars>(REJECT_UPDATE_REQUEST_ITEM)
