@@ -21,8 +21,7 @@ export type ItemState =
     '판매중' |
     '판매중지' |
     '재고없음' |
-    '상품등록요청' |
-    '상품수정요청'
+    '상품등록요청'
 
 export type ItemType = 'cat' | 'dog' | 'both'
 
