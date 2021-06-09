@@ -59,7 +59,7 @@ const payment = () => {
                     },
                     {
                         title: '생성일',
-                        sorter: (a, b) => a.createdAt.getTime() - b.createdAt.getTime(),
+                        sorter: (a, b) => dayjs(a.createdAt).toDate().getTime() - dayjs(b.createdAt).toDate().getTime(),
                         render: (_, r) => <div>{dayjs(r.createdAt).format('YYYY-MM-DD hh:mm:ss')}</div>,
                         align: 'center'
                     },
