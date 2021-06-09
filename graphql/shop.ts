@@ -1,7 +1,65 @@
 import gql from "graphql-tag"
 import { createMutationHook, createQueryHook } from "../lib/createApolloHook"
 import { ShopState } from '../constants/type'
-// QUERY/SHOP
+
+
+// 
+export const SHOPS = gql`
+  query {
+    shops {
+        id
+        shopName
+        shopImage
+        rate
+        rateNum
+        itemNum
+        state
+    }
+  }
+`
+
+
+interface ShopsData {
+    shops: {
+        id: number
+        shopName: string
+        shopImage: string
+        rate: number
+        rateNum: number
+        itemNum: number
+        state: ShopState
+    }[]
+}
+interface ShopsVars { }
+export const useShops = createQueryHook<ShopsData, ShopsVars>(SHOPS)
+
+// 
+export const UPDATE_SHOP = gql`
+  mutation ($input:UpdateShopInput!, $id:Int!){
+    updateShop(input:$input, id:$id) {
+        id
+        state
+    }
+  }
+`
+interface UpdateShopData {
+    updateShop: {
+        id: number
+        state: ShopState
+    }[]
+}
+export interface UpdateShopInput {
+    state: ShopState
+}
+
+interface UpdateShopVars {
+    id: number
+    input: UpdateShopInput
+}
+export const useUpdateShop = createMutationHook<UpdateShopData, UpdateShopVars>(UPDATE_SHOP)
+
+
+// 
 export const SHOP = gql`
   query ($id:Int!){
     shop (id:$id) {
