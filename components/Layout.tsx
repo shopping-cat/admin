@@ -77,7 +77,7 @@ const menuItems = [
     { route: 'dashboard', name: '대시보드', icon: <PieChartOutlined /> },
     { route: 'shop', name: '상점관리', icon: <ShopOutlined /> },
     { route: 'item', name: '상품관리', icon: <ShoppingOutlined /> },
-    { route: 'order', name: '주문관리', icon: <DesktopOutlined /> },
+    { route: 'payment', name: '주문관리', icon: <DesktopOutlined /> },
     { route: 'app', name: '앱관리', icon: <AppstoreOutlined /> },
 ]
 

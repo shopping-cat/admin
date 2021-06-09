@@ -17,7 +17,7 @@ const dict = {
         'new': { name: '신규상품' },
         'update': { name: '업데이트 요청상품' }
     },
-    'order': {
+    'payment': {
         name: '주문관리',
         default: {
             name: '주문세부'
@@ -26,6 +26,12 @@ const dict = {
     'app': {
         name: '앱관리',
         'version': { name: '버전관리' }
+    },
+    'user': {
+        name: '유저',
+        default: {
+            name: '유저세부'
+        }
     }
 }
 
