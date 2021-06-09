@@ -2,6 +2,86 @@ import { gql } from "@apollo/client";
 import { ItemState, ItemRequireInformation, ItemOption, ItemType } from "../constants/type";
 import { createMutationHook, createQueryHook } from "../lib/createApolloHook";
 
+
+
+// 
+export const ITEMS = gql`
+  query {
+    items {
+        id
+        name
+        likeNum
+        state
+        type
+        price
+        sale
+        salePrice
+        category1
+        category2
+        rate
+        deliveryPrice
+        totalOrderNum
+        reviewNum
+        shop {
+            id
+            shopName
+        }
+        updateItem {
+            id
+        }
+    }
+  }
+`
+
+
+interface ItemsData {
+    items: {
+        id: number
+        name: string
+        likeNum: number
+        state: ItemState
+        type: ItemType
+        price: number
+        sale: number
+        salePrice: number
+        category1: string | null
+        category2: string | null
+        deliveryPrice: number
+        rate: number
+        totalOrderNum: number
+        reviewNum: number
+        shop: {
+            id: number
+            shopName: string
+        }
+        updateItem: {
+            id: number
+        } | null
+    }[]
+}
+interface ItemsVars { }
+export const useItems = createQueryHook<ItemsData, ItemsVars>(ITEMS)
+
+// 
+export const UPDATE_ITEM = gql`
+  mutation ($input:UpdateItemInput!, $id:Int!){
+    updateItem(input:$input, id:$id) {
+        id
+        state
+    }
+  }
+`
+interface UpdateItemData { }
+export interface UpdateItemInput {
+    state: ItemState
+}
+
+interface UpdateItemVars {
+    id: number
+    input: UpdateItemInput
+}
+export const useUpdateItem = createMutationHook<UpdateItemData, UpdateItemVars>(UPDATE_ITEM)
+
 // QUERY/ITEM
 export const ITEM = gql`
   query ($id:Int!){

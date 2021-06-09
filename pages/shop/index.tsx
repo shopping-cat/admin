@@ -3,7 +3,6 @@ import Link from 'next/link'
 import React, { useCallback, useState } from 'react'
 import Highlighter from 'react-highlight-words'
 import { UpdateShopInput, useShops, useUpdateShop } from '../../graphql/shop'
-import moneyFormat from '../../lib/moneyFormat'
 
 const shop = () => {
 
@@ -39,12 +38,12 @@ const shop = () => {
                         dataIndex: 'shopName',
                         fixed: 'left',
                         align: 'center',
-                        render: (t, record) => <Highlighter
+                        render: (t, record) => <Link href={`/shop/${record.id}`} ><a><Highlighter
                             highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
                             searchWords={[search]}
                             autoEscape
                             textToHighlight={t ? t.toString() : ''}
-                        />
+                        /></a></Link>
                     },
 
                     {
@@ -88,7 +87,7 @@ const shop = () => {
                         ],
                         render: (t, record) =>
                             <>
-                                {t === '상품등록요청'
+                                {(t === '가입요청' || t === '탈퇴')
                                     ?
                                     <div>{t}</div>
                                     :

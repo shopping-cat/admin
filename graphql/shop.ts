@@ -42,12 +42,7 @@ export const UPDATE_SHOP = gql`
     }
   }
 `
-interface UpdateShopData {
-    updateShop: {
-        id: number
-        state: ShopState
-    }[]
-}
+interface UpdateShopData { }
 export interface UpdateShopInput {
     state: ShopState
 }
